@@ -12,14 +12,14 @@ export default class extends Phaser.State {
     overviewScene.scale.setTo(2.0, 2.0)
 
     var onAirButton = this.game.add.existing(new CycleButton(this.game,
-      10, 60, 'button-onair', true, (state) => { console.log(state) }, this,
+      10, 60, 'button-onair', true, this,
       0, [
         {
-          name: 'off',
+          callback: () => { console.log('off') },
           frames: [1, 1, 2, 1]
         },
         {
-          name: 'on',
+          callback: () => { console.log('on') },
           frames: [3, 3, 4, 3]
         }
       ]))

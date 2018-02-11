@@ -3,9 +3,9 @@ import BlockedButton from './BlockedButton'
 const DEFAULT_INITIAL_INDEX = 0
 
 export default class extends BlockedButton {
-  constructor (game, x, y, key, startBlocked, callback, callbackContext,
+  constructor (game, x, y, key, startBlocked, callbackContext,
     blockedFrame, cycleStates) {
-    super(game, x, y, key, startBlocked, () => { callback(this.cycle()) },
+    super(game, x, y, key, startBlocked, () => { return this.cycle().callback() },
       callbackContext, blockedFrame,
       ...cycleStates[DEFAULT_INITIAL_INDEX].frames)
     this._cycleStates = cycleStates
@@ -16,7 +16,7 @@ export default class extends BlockedButton {
     this._iterator = (this._iterator + 1) % this._cycleStates.length
     var currentState = this._cycleStates[this._iterator]
     this.setFrames(...currentState.frames)
-    return currentState.name
+    return currentState
   }
 
   get blocked () {
